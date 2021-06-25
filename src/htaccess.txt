@@ -1,0 +1,26 @@
+SetEnvIf Request_URI ".*" Ngx_Cache_NoCacheMode=off
+SetEnvIf Request_URI ".*" Ngx_Cache_StaticMode
+
+<IfModule mod_rewrite.c>
+<Files ~ "\.db$">
+  deny from all 
+</Files>
+
+<IfModule mod_rewrite.c>
+<Files ~ "\.py$">
+  deny from all 
+</Files>
+
+RewriteEngine On
+
+#除外設定
+RewriteCond %{REQUEST_URI} !(^/script/mailform/)
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /index.cgi/$1 [QSA,L]
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+RewriteCond %{HTTPS} !on
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+</IfModule>

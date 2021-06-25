@@ -1,0 +1,223 @@
+{% extends 'base.html' %} 
+{% block body %}
+{% for campinf in _campinf %}
+<head>
+    <link href="static/css/styles_individual.css" rel="stylesheet" />
+    <title>富山県キャンプ場おすすめ！{{ campinf.campname }} 　基本情報紹介！</title>
+</head>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+  <figure>
+    <blockquote class="blockquote">
+      <h1>{{ campinf.campname }} 基本情報</h1>
+    </blockquote>
+  </figure>
+</div>
+
+<div class="container">
+<p>※利用期間、施設、設備、料金等は予告なく変更となる場合がございます。</p>
+<p>詳しくは各キャンプ場公式HP、または直接キャンプ場までお問い合わせください。</p>
+<table>
+    <tbody>
+        <tr>
+        <tr>
+            <th>サイト
+                <td>
+                    <ul >
+                        {% for campfacility in _campfacility %}
+                        <li>
+                            {{ campfacility.facility_name }} 
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </th>
+        </tr>
+        <tr>
+            <th>予約方法
+                <td>
+                    <ul >
+                        <li>
+                            {{ campinf.reservmethod }} 
+                        </li>
+                    </ul>
+                </td>
+            </th>
+        </tr>
+        <tr>
+            <th>料金
+                <td>
+                    <ul >
+                        {% for campfacility in _campfacility %}
+                        <li>
+                            {{ campfacility.facility_name }} : <br>{{ campfacility.cost }} 
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </th>
+        </tr>
+        <th>利用期間
+            <td>
+                <ul >
+                    <li>
+                       利用開始月：{{ campinf.start_month }} 
+                    </li>
+                    <li>
+                        利用終了月：{{ campinf.end_month }} 
+                    </li>
+                </ul>
+            </td>
+        </th>
+    </tr>
+    <tr>
+        <th>チェックイン<br>・アウト
+            <td>
+                <ul >
+                    <li>
+                        チェックイン：{{ campinf.check_in }} 
+                    </li>
+                    <li>
+                        チェックアウト：{{ campinf.check_out }}  
+                    </li>
+                </ul>
+            </td>
+        </th>
+    </tr>
+        <tr>
+            <th>キャンセル
+                <td>
+                    <ul >
+                        <li>
+                            {{ campinf.cancel_policy }}
+                        </li>
+                    </ul>
+                </td>
+            </th>
+        </tr>
+        <tr>
+            <th>ペット
+                <td>
+                    <ul >
+                        {% if campinf.petumu == 1 %}
+                        <li>
+                           ペットＯＫ
+                        </li>
+                        {% elif campinf.petumu == 0 %}
+                        <li>
+                            ペットＮＧ
+                        </li>
+                        {% endif %}
+                    </ul>
+                </td>
+            </th>
+        </tr>
+        <tr>
+            <th>焚火
+                <td>
+                    <ul >
+                        <li>
+                            {{ campinf.direct_heat }} 
+                        </li>
+                    </ul>
+                </td>
+            </th>
+        </tr>
+        <tr>
+            <th>ごみ捨て可否
+                <td>
+                    <ul >
+                        <li>
+                            {{ campinf.garbage_station_umu }} 
+                        </li>
+                    </ul>
+                </td>
+            </th>
+        </tr>
+        <tr>
+            <th>近隣施設
+                <td>
+                    <p>[スーパーマーケット]</p>
+                    <ul >
+                        {% for camp_supermarket in _camp_supermarket %}
+                        <li>
+                            {{ camp_supermarket.supermarket_name }}  <br>距離：{{ camp_supermarket.distance }} 
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <p>[温泉、銭湯]</p>
+                    <ul >
+                        {% for camp_hot_spring in _camp_hot_spring %}
+                        <li>
+                            {{ camp_hot_spring.hot_spring_name }}  <br>距離：{{ camp_hot_spring.distance }} <br>料金：{{ camp_hot_spring.hot_spring_cost }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </th>
+        </tr>
+        <tr>
+            <th>連絡先
+                <td>
+                    <ul >
+                        <li>
+                            {{ campinf.phone }} 
+                        </li>
+                    </ul>
+                </td>
+            </th>
+        </tr>
+        <tr>
+            <th>住所
+                <td>
+                    <ul >
+                        <li>
+                            {{ campinf.postcd }} <br>
+                            {{ campinf.address }}
+                        </li>
+                    </ul>
+                </td>
+            </th>
+        </tr>
+        <tr>
+            <th>最寄り駅
+                <td>
+                    <ul >
+                        <li>
+                            {{ campinf.closest }} 
+                        </li>
+                    </ul>
+                </td>
+            </th>
+        </tr>
+        <tr>
+            <th>公式HP
+                <td>
+                    <ul >
+                        <li>
+                            <a href="{{ campinf.url }} " target="_blank">公式のWebサイトはこちら </a>
+                        </li>
+                    </ul>
+                </td>
+            </th>
+        </tr>
+    </tbody>
+</table>
+<br>
+{% if campinf.googlemap != None %}
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe src="{{ campinf.googlemap }}" width="650" height="450450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+{% endif %}
+<br>
+<br>
+<br>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %} 
+{% block body %}
+<head>
+  <title>北陸、富山のおすすめのキャンプ場を一覧で紹介しています！</title>
+</head>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+  <figure>
+    <blockquote class="blockquote">
+      <h3>北陸 富山 キャンプ場一覧</h3>
+    </blockquote>
+    <div class="container">
+      <h3 class="text-info">{{ _subtitle }} </h3>
+    </div>
+  </figure>
+</div>
+
+<div class="container">
+  <button class="btn btn-primary btm-sm" id="sendMessageButton" type="submit" onclick="location.href='/camplist'">すべて</button>
+<button class="btn btn-primary btm-sm" id="sendMessageButton" type="submit" onclick="location.href='/camplist?search=yoyakunashi'">予約不要</button>
+<button class="btn btn-primary" id="sendMessageButton" type="submit" onclick="location.href='/camplist?search=muryo'">無料</button>
+<button class="btn btn-primary" id="sendMessageButton" type="submit" onclick="location.href='/camplist?search=pets'">ペットOK</button>
+<button class="btn btn-primary" id="sendMessageButton" type="submit" onclick="location.href='/camplist?search=bbq'">BBQ施設あり</button>
+<button class="btn btn-primary" id="sendMessageButton" type="submit" onclick="location.href='/camplist?search=daycamp'">日帰り</button>
+</div>
+
+<div class="container">
+  <p>※キャンプ場名をクリックすると各キャンプ場の詳細情報が確認できます。</p>
+{% for campareasgroup in _campareasgroups %}
+<table class="table table-bordered table-sm">
+  <br>
+  <div class="panel-heading bg-primary text-white" role="alert"> ▼ {{ campareasgroup.area }} </div>
+  <thead>
+    <tr class="table-success">
+      <!-- <th style="width:5%" scope="col">No</th> -->
+      <th scope="col">キャンプ場名</th>
+      <th scope="col">住所</th>
+      <th scope="col">お問い合わせ</th>
+      <th scope="col">URL</th>
+      <!-- <th style="width:25%" scope="col">予約方法</th> -->
+    </tr>
+  </thead>
+  {% for camplist in camplists %}
+  {% if campareasgroup.area == camplist.area %}
+  <tbody>
+    <tr>
+      <!-- <th scope="col">{{ camplist.campid }}</th> -->
+      <td scope="col"><a href="/individual?campid={{ camplist.campid }}" >{{ camplist.campname }}</td>
+      <td scope="col">{{ camplist.postcd }}<br>{{ camplist.address }}</td>
+      <td scope="col">{{ camplist.phone }}</td>
+      <td scope="col"><a href="{{ camplist.url }}" target="_blank">HP URL</a></td>
+      <!-- <td scope="col">{{ camplist.reservmethod }}</td> -->
+    </tr>
+  </tbody>
+  {% endif %}
+  {% endfor %}
+  {% endfor %}
+</table>
+</div>
+
+
+
+{% endblock %}

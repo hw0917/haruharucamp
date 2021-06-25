@@ -1,0 +1,123 @@
+{% extends 'base.html' %} {% block body %}
+<head>
+  <title>北陸、富山のおすすめのキャンプ場の予約状況を一覧で確認できます！</title>
+</head>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+  <h2>富山県のキャンプ場予約状況一覧</h2>
+  <div class="container">
+  <p>各キャンプ場の予約状況一覧を表示します。</p>
+  <p>本ページにないキャンプ場の予約状況は各キャンプ場のホームページを確認してみてください。</p>
+  <p>〇：予約可能、 △：空き残りわずか、 ×：空きなし、 －：予約不可(休み)、 残9：残り空き数</p>
+  </div>
+</div>
+<div class="container">
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+  <ul class="pagination">
+    {% for month in range(_now_month,_after_5_months) %}
+    <li class="page-item"><a class="page-link" href="/reservinf?key={{ month }}">{{ month }}月</a></li>
+    {% endfor %}
+  </ul>
+</nav>
+</div>
+<div class="container">
+  <h3 class="text-info">＜{{ _month }}月＞</h3>
+  {% for campidgroup in _Campidgroup %}
+
+  <div class="table-responsive">
+  <table class="table table-bordered table-sm" >
+   <div class="panel-heading bg-primary text-white" role="alert"> ▼ {{ campidgroup.Camplist.campname }} </div>
+    {% for campidsum in _Campidsum %}
+    {% if campidsum.Camplist.campid == campidgroup.Camplist.campid %}
+
+    <thead>
+      <tr class="table-info">
+        <th scope="col">施設名</th>
+        <th scope="col">1</th>
+        <th scope="col">2</th>
+        <th scope="col">3</th>
+        <th scope="col">4</th>
+        <th scope="col">5</th>
+        <th scope="col">6</th>
+        <th scope="col">7</th>
+        <th scope="col">8</th>
+        <th scope="col">9</th>
+        <th scope="col">10</th>
+        <th scope="col">11</th>
+        <th scope="col">12</th>
+        <th scope="col">13</th>
+        <th scope="col">14</th>
+        <th scope="col">15</th>
+        <th scope="col">16</th>
+        <th scope="col">17</th>
+        <th scope="col">18</th>
+        <th scope="col">19</th>
+        <th scope="col">20</th>
+        <th scope="col">21</th>
+        <th scope="col">22</th>
+        <th scope="col">23</th>
+        <th scope="col">24</th>
+        <th scope="col">25</th>
+        <th scope="col">26</th>
+        <th scope="col">27</th>
+        <th scope="col">28</th>
+        <th scope="col">29</th>
+        <th scope="col">30</th>
+        <th scope="col">31</th>
+      </tr>
+    </thead>
+    {% for campreserve in _CampReserve %}
+    {% if campidsum.Camplist.campid == campreserve.Camplist.campid and campidsum.CampReserve.year == campreserve.CampReserve.year and campidsum.CampReserve.month == campreserve.CampReserve.month %}
+    <tbody>
+      <tr>
+        <th nowrap scope="col">{{ campreserve.CampReserve.Facilityname }}</th>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day1 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day2 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day3 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day4 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day5 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day6 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day7 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day8 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day9 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day10 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day11 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day12 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day13 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day14 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day15 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day16 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day17 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day18 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day19 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day20 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day21 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day22 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day23 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day24 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day25 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day26 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day27 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day28 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day29 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day30 }}</td>
+        <td nowrap scope="col">{{ campreserve.CampReserve.day31 }}</td>
+
+      </tr>
+    </tbody>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+  </table>
+</div>
+    {% endfor %}
+
+</div>
+{% endblock %}
