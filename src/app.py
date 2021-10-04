@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from dateutil.relativedelta import relativedelta
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./templates/images')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///camp.db'
 db = SQLAlchemy(app)
 
@@ -33,6 +33,9 @@ class Camplist(db.Model):
     closest = db.Column(db.String(50))
     coment = db.Column(db.String(200))
     googlemap = db.Column(db.String(1000))
+    place_id = db.Column(db.String(50))
+    totalstar = db.Column(db.String(50))
+    total_review_count = db.Column(db.Integer)
 
 class Campfacility(db.Model):
     campid = db.Column(db.Integer, primary_key=True)
@@ -198,6 +201,24 @@ def individual():
 @app.route('/privacy-policy')
 def privacypolicy(): 
     return render_template('privacy-policy.html')
+
+
+@app.route('/ranking')
+def ranking(): 
+    _campranks = Camplist.query.\
+        order_by(Camplist.totalstar.desc(),Camplist.total_review_count.desc()).\
+            limit(5).\
+                all()
+
+    campinf = {}
+    i = 1
+    for _camprank in _campranks:
+        campinf["_campname" + str(i)] = _camprank.campname
+        campinf["_totalstar" + str(i)] = _camprank.totalstar
+        campinf["_total_review_count" + str(i)] = _camprank.total_review_count
+        i = i + 1
+    imagespath = "images/1.jpg"
+    return render_template('ranking.html',campranksinf =campinf,imagespath=imagespath)
 
 if __name__ == '__main__':
     app.run()
