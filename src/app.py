@@ -56,6 +56,12 @@ class Camp_supermarket(db.Model):
     supermarket_name = db.Column(db.String(50), nullable=False)
     distance = db.Column(db.String(15))
 
+class campimages(db.Model):
+    prefecture_id = db.Column(db.Integer, primary_key=True)
+    campid = db.Column(db.Integer, primary_key=True)
+    imagesid = db.Column(db.Integer, primary_key=True)
+    file_path = db.Column(db.String(50), nullable=False)
+
 class CampReserve(db.Model):
     campid = db.Column(db.Integer, primary_key=True)
     Facilityname = db.Column(db.String(10), primary_key=True)
@@ -205,10 +211,20 @@ def privacypolicy():
 
 @app.route('/ranking')
 def ranking(): 
-    _campranks = Camplist.query.\
-        order_by(Camplist.totalstar.desc(),Camplist.total_review_count.desc()).\
-            limit(5).\
-                all()
+    sql = "SELECT Cl.*,ci.file_path" 
+    sql = sql + " FROM Camplist Cl"
+    sql = sql + " JOIN campimages ci"
+    sql = sql + " ON Cl.campid = ci.campid"
+    sql = sql + " ORDER BY Cl.total_review_count DESC , Cl.totalstar DESC"
+    sql = sql + " LIMIT 5"
+
+    _campranks = db.session.execute(sql)
+
+    # _campranks = Camplist.query.\
+    #     join(campimages,Camplist.campid == campimages.campid).\
+    #         order_by(Camplist.totalstar.desc(),Camplist.total_review_count.desc()).\
+    #             limit(5).\
+    #                 all()
 
     campinf = {}
     i = 1
@@ -216,9 +232,11 @@ def ranking():
         campinf["_campname" + str(i)] = _camprank.campname
         campinf["_totalstar" + str(i)] = _camprank.totalstar
         campinf["_total_review_count" + str(i)] = _camprank.total_review_count
+        campinf["_imagepath" + str(i)] = _camprank.file_path
+
         i = i + 1
-    imagespath = "images/1.jpg"
-    return render_template('ranking.html',campranksinf =campinf,imagespath=imagespath)
+    
+    return render_template('ranking.html',campranksinf =campinf)
 
 if __name__ == '__main__':
     app.run()
