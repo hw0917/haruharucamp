@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block body %}
 
 <head>
-  <title>北陸、富山のキャンプ場の人気ランキング！</title>
+  <title>北陸、富山のキャンプ場のおすすめ人気ランキング！</title>
 </head>
 <br>
 <br>
@@ -10,10 +10,9 @@
 <br>
 <br>
 <div class="container">
-<h2>キャンプ場いろいろランキング！</h2>
-<h3>口コミ、評価、レビュー数などなど！</h3>
-<p>下のボタンでいろいろな順番で表示できます。</p>
-{{ campranksinf._imagepath1 }}
+<h2>キャンプ場おすすめ人気ランキング！</h2>
+<h3>GoogleMapでの口コミ、評価、レビュー数など</h3>
+<p>下のボタンで様々なランキング順番で表示できます。</p>
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     並び替え
@@ -29,10 +28,11 @@
     <div class="card">
       <img src={{ campranksinf._imagepath1 }} class="card-img-top" alt="aiueo">
       <div class="card-body">
-        <p class="card-text">1位</p>
-        <p class="card-text">{{ campranksinf._campname1 }}</p>
-        <p class="card-text">{{ campranksinf._totalstar1 }}</p>
-        <p class="card-text">{{ campranksinf._total_review_count1 }}</p>
+        <h1 class="card-text">1位</h1>
+        <h2 class="card-text">{{ campranksinf._campname1 }}</h2>
+        <h4 class="card-text">レビュー評価点:&nbsp;&nbsp;&nbsp;&nbsp;{{ campranksinf._totalstar1 }}</h4>
+        <h4 class="card-text">口コミ数:&nbsp;&nbsp;&nbsp;&nbsp;{{ campranksinf._total_review_count1 }}件</h4>
+        <p class="card-text">powered by Google</p>
       </div>
     </div>
   </div>
@@ -45,10 +45,11 @@
         <div class="card">
           <img src={{ campranksinf._imagepath2 }} class="card-img-top" alt="...">
           <div class="card-body">
-            <p class="card-text">2位</p>
-            <p class="card-text">{{ campranksinf._campname2 }}</p>
-            <p class="card-text">{{ campranksinf._totalstar2 }}</p>
-            <p class="card-text">{{ campranksinf._total_review_count2 }}</p>
+            <h2 class="card-text">2位</h2>
+            <h3 class="card-text">{{ campranksinf._campname2 }}</h3>
+            <h4 class="card-text">レビュー評価点:&nbsp;&nbsp;&nbsp;&nbsp;{{ campranksinf._totalstar2 }}</h4>
+            <h4 class="card-text">口コミ数:&nbsp;&nbsp;&nbsp;&nbsp;{{ campranksinf._total_review_count2 }}件</h4>
+            <p class="card-text">powered by Google</p>
           </div>
         </div>
       </div>
@@ -56,10 +57,11 @@
         <div class="card">
           <img src={{ campranksinf._imagepath3 }} class="card-img-top" alt="...">
           <div class="card-body">
-            <p class="card-text">3位</p>
-            <p class="card-text">{{ campranksinf._campname3 }}</p>
-            <p class="card-text">{{ campranksinf._totalstar3 }}</p>
-            <p class="card-text">{{ campranksinf._total_review_count3 }}</p>
+            <h3 class="card-text">3位</h3>
+            <h3 class="card-text">{{ campranksinf._campname3 }}</h3>
+            <h4 class="card-text">レビュー評価点:&nbsp;&nbsp;&nbsp;&nbsp;{{ campranksinf._totalstar3 }}</h4>
+            <h4 class="card-text">口コミ数:&nbsp;&nbsp;&nbsp;&nbsp;{{ campranksinf._total_review_count3 }}件</h4>
+            <p class="card-text">powered by Google</p>
           </div>
         </div>
       </div>
@@ -74,10 +76,11 @@
         <div class="card">
           <img src={{ campranksinf._imagepath4 }} class="card-img-top" alt="...">
           <div class="card-body">
-            <p class="card-text">4位</p>
-            <p class="card-text">{{ campranksinf._campname4 }}</p>
-            <p class="card-text">{{ campranksinf._totalstar4 }}</p>
-            <p class="card-text">{{ campranksinf._total_review_count4 }}</p>
+            <h3 class="card-text">4位</h3>
+            <h3 class="card-text">{{ campranksinf._campname4 }}</h3>
+            <h4 class="card-text">レビュー評価点:&nbsp;&nbsp;&nbsp;&nbsp;{{ campranksinf._totalstar4 }}</h4>
+            <h4 class="card-text">口コミ数:&nbsp;&nbsp;&nbsp;&nbsp;{{ campranksinf._total_review_count4 }}件</h4>
+            <p class="card-text">powered by Google</p>
           </div>
         </div>
       </div>
@@ -85,10 +88,11 @@
         <div class="card">
           <img src={{ campranksinf._imagepath5 }} class="card-img-top" alt="...">
           <div class="card-body">
-            <p class="card-text">5位</p>
-            <p class="card-text">{{ campranksinf._campname5 }}</p>
-            <p class="card-text">{{ campranksinf._totalstar5 }}</p>
-            <p class="card-text">{{ campranksinf._total_review_count5 }}</p>
+            <h3 class="card-text">5位</h3>
+            <h3 class="card-text">{{ campranksinf._campname6 }}</h3>
+            <h4 class="card-text">レビュー評価点:&nbsp;&nbsp;&nbsp;&nbsp;{{ campranksinf._totalstar5 }}</h4>
+            <h4 class="card-text">口コミ数:&nbsp;&nbsp;&nbsp;&nbsp;{{ campranksinf._total_review_count5 }}件</h4>
+            <p class="card-text">powered by Google</p>
           </div>
         </div>
       </div>

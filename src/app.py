@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from dateutil.relativedelta import relativedelta
 
 
-app = Flask(__name__, static_folder='./templates/images')
+app = Flask(__name__, static_folder='./static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///camp.db'
 db = SQLAlchemy(app)
 
@@ -219,12 +219,6 @@ def ranking():
     sql = sql + " LIMIT 5"
 
     _campranks = db.session.execute(sql)
-
-    # _campranks = Camplist.query.\
-    #     join(campimages,Camplist.campid == campimages.campid).\
-    #         order_by(Camplist.totalstar.desc(),Camplist.total_review_count.desc()).\
-    #             limit(5).\
-    #                 all()
 
     campinf = {}
     i = 1
