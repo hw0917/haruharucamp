@@ -18,10 +18,8 @@
     並び替え
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">口コミ数が多い順</a>
-    <a class="dropdown-item" href="#">評価が高い順</a>
-    <a class="dropdown-item" href="#">口コミ数が少ない順</a>
-    <a class="dropdown-item" href="#">評価が低い順</a>
+    <a class="dropdown-item" href="/ranking?rank=review">口コミ数が多い順</a>
+    <a class="dropdown-item" href="/ranking?rank=star">評価が高い順</a>
   </div>
 </div>
   <div class="col-md">
@@ -89,7 +87,7 @@
           <img src={{ campranksinf._imagepath5 }} class="card-img-top" alt="...">
           <div class="card-body">
             <h3 class="card-text">5位</h3>
-            <h3 class="card-text">{{ campranksinf._campname6 }}</h3>
+            <h3 class="card-text">{{ campranksinf._campname5 }}</h3>
             <h4 class="card-text">レビュー評価点:&nbsp;&nbsp;&nbsp;&nbsp;{{ campranksinf._totalstar5 }}</h4>
             <h4 class="card-text">口コミ数:&nbsp;&nbsp;&nbsp;&nbsp;{{ campranksinf._total_review_count5 }}件</h4>
             <p class="card-text">powered by Google</p>

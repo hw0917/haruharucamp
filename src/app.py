@@ -211,13 +211,21 @@ def privacypolicy():
 
 @app.route('/ranking')
 def ranking(): 
+    rank = request.args.get('rank')
     sql = "SELECT Cl.*,ci.file_path" 
     sql = sql + " FROM Camplist Cl"
     sql = sql + " JOIN campimages ci"
     sql = sql + " ON Cl.campid = ci.campid"
-    sql = sql + " ORDER BY Cl.total_review_count DESC , Cl.totalstar DESC"
-    sql = sql + " LIMIT 5"
+    
+    if rank == 'review':
+        sql = sql + " ORDER BY Cl.total_review_count DESC , Cl.totalstar DESC"
+    elif rank == 'star':
+        sql = sql + " ORDER BY  Cl.totalstar DESC, Cl.total_review_count DESC "
+    else:
+        sql = sql + " ORDER BY Cl.total_review_count DESC , Cl.totalstar DESC"
 
+    
+    sql = sql + " LIMIT 5"
     _campranks = db.session.execute(sql)
 
     campinf = {}
